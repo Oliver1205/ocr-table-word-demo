@@ -69,9 +69,16 @@ def run(args: argparse.Namespace) -> int:
                 preprocess_result.get("error"),
             )
 
-        ocr_engine = OCREngine(lang=DEFAULT_OCR_LANG, use_angle_cls=True)
-        ocr_results = ocr_engine.recognize(str(input_path))
-        logger.info("OCR recognized %d text boxes", len(ocr_results))
+        ocr_results: list[dict] = []
+        try:
+            ocr_engine = OCREngine(lang=DEFAULT_OCR_LANG, use_angle_cls=True)
+            ocr_results = ocr_engine.recognize(str(input_path))
+            logger.info("OCR recognized %d text boxes", len(ocr_results))
+        except Exception as exc:
+            logger.error("OCR step failed: %s", exc)
+            logger.warning(
+                "Fallback to empty table output. The Word file will still be generated."
+            )
 
         low_confidence_items = [
             item for item in ocr_results if item.get("confidence", 0.0) < args.conf_threshold
@@ -100,7 +107,8 @@ def run(args: argparse.Namespace) -> int:
         return 0
 
     except Exception as exc:
-        logger.exception("Process failed: %s", exc)
+        logger.error("Process failed: %s", exc)
+        logger.debug("Debug traceback", exc_info=True)
         return 1
 
 

@@ -52,6 +52,7 @@ def preprocess_image(image_path: str, debug: bool = False) -> dict:
     """
     source_path = check_file_exists(image_path)
     result: dict[str, Any] = {
+        "original_path": str(source_path),
         "source_path": str(source_path),
         "ocr_image_path": str(source_path),
         "processed_path": None,
