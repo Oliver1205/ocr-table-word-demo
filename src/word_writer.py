@@ -1,4 +1,4 @@
-"""Word document writer based on python-docx."""
+﻿"""Word document writer based on python-docx."""
 
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ def write_table_to_docx(
     heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     if not table_data:
-        document.add_paragraph("未识别到有效表格内容")
+        document.add_paragraph("No valid table content recognized.")
         document.save(str(path))
         return
 
@@ -44,5 +44,7 @@ def write_table_to_docx(
             table.cell(row_index, col_index).text = value
 
     document.add_paragraph()
-    document.add_paragraph("说明：带有 [低置信度] 标记的内容建议人工复核。")
+    document.add_paragraph(
+        "Note: OCR recognition results should be reviewed together with the original image."
+    )
     document.save(str(Path(path)))

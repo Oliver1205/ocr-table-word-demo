@@ -16,3 +16,22 @@ output/*.docx
 
 .DS_Store
 Thumbs.db
+
+# Runtime generated files
+models/
+logs/*
+!logs/README.md
+output/*
+!output/README.md
+__pycache__/
+*.pyc
+
+# Runtime generated files
+models/
+logs/*
+!logs/README.md
+output/*
+!output/README.md
+__pycache__/
+*.pyc
+ocr-table-word-demo-image.tar

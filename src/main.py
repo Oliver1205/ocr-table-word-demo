@@ -1,4 +1,4 @@
-"""Command line entrypoint for OCR table to Word conversion."""
+﻿"""Command line entrypoint for OCR table to Word conversion."""
 
 from __future__ import annotations
 
@@ -93,7 +93,7 @@ def run(args: argparse.Namespace) -> int:
         table_data = parse_table_from_ocr(
             ocr_results,
             conf_threshold=args.conf_threshold,
-            mark_low_confidence=True,
+            mark_low_confidence=False,
         )
         logger.info(
             "Table matrix generated: %d rows x %d columns",
@@ -120,3 +120,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

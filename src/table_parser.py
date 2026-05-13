@@ -1,4 +1,4 @@
-"""Simplified table reconstruction from OCR text boxes."""
+﻿"""Simplified table reconstruction from OCR text boxes."""
 
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def parse_table_from_ocr(
 
         copied = dict(item)
         if mark_low_confidence and float(item.get("confidence", 0.0)) < conf_threshold:
-            copied["display_text"] = f"[低置信度] {text}"
+            copied["display_text"] = f"[浣庣疆淇″害] {text}"
         else:
             copied["display_text"] = text
         prepared.append(copied)
@@ -138,3 +138,4 @@ def parse_table_from_ocr(
     rows = group_by_rows(prepared)
     columns = infer_columns(rows)
     return normalize_matrix(rows, columns)
+

@@ -225,3 +225,27 @@ Docker 运行：
 ```bash
 docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output -v $(pwd)/logs:/app/logs ocr-table-word-demo python -m src.main --input input/sample.jpg --output output/result.docx
 ```
+
+## Final Docker Demo
+
+Build image:
+
+docker build -t ocr-table-word-demo .
+
+Run demo:
+
+docker run --rm -v "${PWD}\input:/app/input" -v "${PWD}\output:/app/output" -v "${PWD}\logs:/app/logs" -v "${PWD}\models:/root/.EasyOCR" ocr-table-word-demo python -m src.main --input input/sample_enhanced.png --output output/result.docx --debug
+
+Project features:
+
+- Input table image
+- Image preprocessing
+- OCR recognition
+- Table structure reconstruction
+- Editable Word table generation
+- Docker-based local deployment
+- Log and debug image output
+
+Note:
+
+The current delivery version uses EasyOCR as a Docker-compatible OCR fallback. The original design can be switched to PaddleOCR in a stable Paddle runtime environment. For noisy or low-resolution scanned images, OCR results should be reviewed together with the original image.
