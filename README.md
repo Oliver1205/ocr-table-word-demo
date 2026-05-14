@@ -249,3 +249,14 @@ Project features:
 Note:
 
 The current delivery version uses EasyOCR as a Docker-compatible OCR fallback. The original design can be switched to PaddleOCR in a stable Paddle runtime environment. For noisy or low-resolution scanned images, OCR results should be reviewed together with the original image.
+
+## Final OCR Engine Update
+
+The current delivery version uses RapidOCR + ONNXRuntime as the OCR backend.
+
+Reasons:
+- RapidOCR is more suitable for Chinese document/table OCR than EasyOCR in this demo.
+- It avoids the paddlepaddle runtime issue encountered in the Windows Docker environment.
+- It supports local CPU-based Docker deployment.
+
+The project still keeps a modular OCR engine wrapper, so the backend can be switched later if needed.
